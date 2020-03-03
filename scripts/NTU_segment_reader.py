@@ -56,7 +56,7 @@ class DataGenerator(keras.utils.Sequence):
         X1, X2, X3, X_skl_21, X_skl_22, X_skl_31, X_skl_32, X_skl_33, X_skl_41, X_skl_42, X_skl_43, X_skl_44, y = self.__data_generation(list_IDs_temp)
 
         #return [X1,X2,X3,X_skl_21,X_skl_22,X_skl_31,X_skl_32,X_skl_33,X_skl_41,X_skl_42,X_skl_43,X_skl_44], y
-	return [X1, X2, X3, X_skl_21, X_skl_22, X_skl_31, X_skl_32, X_skl_33, X_skl_41, X_skl_42, X_skl_43, X_skl_44], y
+        return [X1, X2, X3, X_skl_21, X_skl_22, X_skl_31, X_skl_32, X_skl_33, X_skl_41, X_skl_42, X_skl_43, X_skl_44], y
 
     def on_epoch_end(self):
         'Updates indexes after each epoch'
@@ -101,7 +101,7 @@ class DataGenerator(keras.utils.Sequence):
         for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[0:len(unpadded_file)/2,:]
+            unpadded_file = unpadded_file[0:len(unpadded_file)//2,:]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -111,7 +111,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -125,10 +125,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_21[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[len(unpadded_file)/2:len(unpadded_file)]
+            unpadded_file = unpadded_file[len(unpadded_file)//2:len(unpadded_file)]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -138,7 +138,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -152,10 +152,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_22[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[len(unpadded_file)/2:len(unpadded_file)]
+            unpadded_file = unpadded_file[len(unpadded_file)//2:len(unpadded_file)]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -165,7 +165,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -179,10 +179,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_22[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[0:len(unpadded_file)/3]
+            unpadded_file = unpadded_file[0:len(unpadded_file)//3]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -192,7 +192,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -206,10 +206,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_31[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[len(unpadded_file)/3:2*len(unpadded_file)/3]
+            unpadded_file = unpadded_file[len(unpadded_file)//3:2*len(unpadded_file)//3]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -219,7 +219,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -233,10 +233,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_32[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[2*len(unpadded_file)/3:len(unpadded_file)]
+            unpadded_file = unpadded_file[2*len(unpadded_file)//3:len(unpadded_file)]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -246,7 +246,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -260,10 +260,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_33[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[0:len(unpadded_file)/4]
+            unpadded_file = unpadded_file[0:len(unpadded_file)//4]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -273,7 +273,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -287,10 +287,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_41[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[len(unpadded_file)/4:len(unpadded_file)/2]
+            unpadded_file = unpadded_file[len(unpadded_file)//4:len(unpadded_file)//2]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -300,7 +300,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -314,10 +314,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_42[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[len(unpadded_file)/2:3*len(unpadded_file)/4]
+            unpadded_file = unpadded_file[len(unpadded_file)//2:3*len(unpadded_file)//4]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -327,7 +327,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
@@ -341,10 +341,10 @@ class DataGenerator(keras.utils.Sequence):
             X_skl_43[i,] = np.squeeze(sampled_file)
             #X_skl_21 = np.asarray(X_skl_21)
 
-	for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(list_IDs_temp):
             # Store sample
             unpadded_file = np.load(self.path_skeleton + ID + '.npy')
-            unpadded_file = unpadded_file[3*len(unpadded_file)/4:len(unpadded_file)]
+            unpadded_file = unpadded_file[3*len(unpadded_file)//4:len(unpadded_file)]
             origin = unpadded_file[0, 3:6]
             [row, col] = unpadded_file.shape
             origin = np.tile(origin, (row, 50))
@@ -354,7 +354,7 @@ class DataGenerator(keras.utils.Sequence):
                padded_file = unpadded_file[0:len(unpadded_file) - extra_frames,:]
             else:
                [row, col] = unpadded_file.shape
-               alpha = (len(unpadded_file)/self.step) + 1
+               alpha = int(len(unpadded_file)/self.step) + 1
                req_pad = np.zeros(((alpha * self.step)-row, col))
                padded_file = np.vstack((unpadded_file, req_pad))
             splitted_file = np.split(padded_file, self.step)
