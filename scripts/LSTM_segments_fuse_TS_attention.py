@@ -46,6 +46,8 @@ model = temporal_model(n_neuron, n_neuron_skl, n_dropout, batch_size, timesteps_
 parallel_model = multi_gpu_model(model, gpus=4)
 parallel_model.compile(loss = 'categorical_crossentropy', optimizer = keras.optimizers.Adam(lr=0.001, clipnorm=1), metrics = ['accuracy'])
 model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(lr=0.001, clipnorm=1), metrics=['accuracy'])
+if not os.path.exists('./weights_'+name):
+    os.makedirs('./weights_'+name)
 model_checkpoint = CustomModelCheckpoint(model, './weights_'+name+'/epoch_')
 print('Model Compiled !!!')
 

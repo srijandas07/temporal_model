@@ -4,7 +4,7 @@ from keras.layers import TimeDistributed, GaussianNoise, GaussianDropout, Dropou
 from keras.models import Model
 from keras import backend as K
 import keras
-from keras.layers import Activation, concatenate, Flatten, Reshape, Merge, Input, Add, RepeatVector, Permute
+from keras.layers import Activation, concatenate, Flatten, Reshape, Input, Add, RepeatVector, Permute
 from keras import regularizers
 
 
