@@ -35,20 +35,20 @@ if __name__ == '__main__':
     parallel_model = multi_gpu_model(model, gpus=4)
     parallel_model.compile(loss = 'categorical_crossentropy', optimizer = keras.optimizers.Adam(lr=args.lr, clipnorm=1), metrics = ['accuracy'])
     model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(lr=args.lr, clipnorm=1), metrics=['accuracy'])
-    if not os.path.exists('./weights_'+name):
-        os.makedirs('./weights_'+name)
-    model_checkpoint = CustomModelCheckpoint(model, './weights_'+name+'/epoch_')
+    if not os.path.exists('./weights_'+args.name):
+        os.makedirs('./weights_'+args.name)
+    model_checkpoint = CustomModelCheckpoint(model, './weights_'+args.name+'/epoch_')
     print('Model Compiled !!!')
 
-    train_generator = DataGenerator(args.train_file, 'train', args.att, batch_size = batch_size)
-    val_generator = DataGenerator(args.val_file, 'validation', args.att, batch_size = batch_size)
-    test_generator = DataGenerator(args.test_file, 'test', args.att, batch_size = batch_size)
+    train_generator = DataGenerator(args.train_file, 'train', args.att, batch_size = args.batch_size)
+    val_generator = DataGenerator(args.val_file, 'validation', args.att, batch_size = args.batch_size)
+    test_generator = DataGenerator(args.test_file, 'test', args.att, batch_size = args.batch_size)
 
 
     parallel_model.fit_generator(generator=train_generator,
                     validation_data=val_generator,
                     use_multiprocessing=True,
-                    epochs=epochs,
+                    epochs=args.epochs,
 		    callbacks = [csvlogger, reduce_lr, model_checkpoint],
                     max_queue_size = 48,
                     workers=cpu_count() - 2)
