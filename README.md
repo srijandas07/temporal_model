@@ -24,14 +24,19 @@ The following commands can then be used to install the dependencies:
 conda create --name tensorflow-gpu1.13 tensorflow-gpu==1.13.1 keras scikit-image opencv
 conda create --name pytorchenv pytorch==1.0.1 torchvision==0.2 tensorflow-gpu==1.13.1 keras scikit-image opencv "pillow<7" tqdm
 ```
+## EXECUTION
+
+```bash
+python main.py (optional arguments)
+```
+
 ## PRE-TRAINED MODELS
 
 The pretrained 3DCNN model can be downloaded from https://drive.google.com/drive/folders/1WE5srEZjth_Or1--lLG3cwCuqjugsDh1?usp=sharing as well as the skeleton files. Extract to the data folder.
 
 ## I3D segment wise Features
 
-Will be available soon
-
+Can be extracted using scripts in scripts/segment_extraction/ folder.
 
 ## Reference
 <a id="1">[1]</a>
