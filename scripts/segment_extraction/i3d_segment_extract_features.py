@@ -17,6 +17,7 @@ from NTU_segment_Loader import *
 import argparse
 
 parser = argparse.ArgumentParser(description='Segment Feature Extraction')
+parser.add_argument('--dataset', default='NTU_CS', help='Dataset')
 parser.add_argument('name', help='Train/Test/Validation')
 parser.add_argument('split_path', help='Text file containing videos for each split(in data folder)')
 parser.add_argument('frames_path', help='Path to video frames')
@@ -40,14 +41,20 @@ for index in range(args.granularity):
     generators.append(test_generator)
 
 if args.name=='Train':
-    filename='train_CS'
+    filename='train'
 elif args.name=='Test':
-    filename='test_CS'
+    filename='test'
 else:
-    filename='validation_CS'
+    filename='validation'
+
+if not os.path.exists('../../data/{}'.format(args.dataset)):
+    os.makedirs('../../data/{}'.format(args.dataset))
+
+if not os.path.exists('../../data/{}/att_features_{}'.format(args.dataset, args.granularity)):
+    os.makedirs('../../data/{}/att_features_{}'.format(args.dataset, args.granularity))
 
 for index in range(args.granularity):
     features = np.squeeze(parallel_model.predict_generator(generators[index], max_queue_size = 48, workers = cpu_count() - 2, use_multiprocessing = True))
     features_flattened = features.reshape(len(features), 7*1024)
-    np.save('../../data/NTU_CS/att_features_withoutSA/att_features_{}/{}_{}.csv.gz'.format(args.granularity, filename, index+1), features_flattened)
+    np.save('../../data/{}/att_features_{}/{}_{}.csv.gz'.format(args.dataset, args.granularity, filename, index+1), features_flattened)
 
