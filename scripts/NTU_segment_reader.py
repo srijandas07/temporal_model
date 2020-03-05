@@ -12,7 +12,7 @@ import cv2
 
 class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
-    def __init__(self, path_video_files, split, att, batch_size=16):
+    def __init__(self, path_video_files, split, dataset, batch_size=16):
         'Initialization'
         self.batch_size = batch_size
         self.path_video_files = path_video_files
@@ -27,16 +27,16 @@ class DataGenerator(keras.utils.Sequence):
         self.step = 5
         self.split = split
         self.att = att
-        self.dataset = 'NTU_CS/'
-        self.data_seg4_t1 = np.load('../data/'+self.dataset+self.att+'att_features_4/'+self.split+'_CS_1.csv.gz.npy')
-        self.data_seg4_t2 = np.load('../data/'+self.dataset+self.att+'att_features_4/'+self.split+'_CS_2.csv.gz.npy')
-        self.data_seg4_t3 = np.load('../data/'+self.dataset+self.att+'att_features_4/'+self.split+'_CS_3.csv.gz.npy')
-        self.data_seg4_t4 = np.load('../data/'+self.dataset+self.att+'att_features_4/'+self.split+'_CS_4.csv.gz.npy')
-        self.data_seg3_t1 = np.load('../data/'+self.dataset+self.att+'att_features_3/'+self.split+'_CS_1.csv.gz.npy')
-        self.data_seg3_t2 = np.load('../data/'+self.dataset+self.att+'att_features_3/'+self.split+'_CS_2.csv.gz.npy')
-        self.data_seg3_t3 = np.load('../data/'+self.dataset+self.att+'att_features_3/'+self.split+'_CS_3.csv.gz.npy')
-        self.data_seg2_t1 = np.load('../data/'+self.dataset+self.att+'att_features_2/'+self.split+'_CS_1.csv.gz.npy')
-        self.data_seg2_t2 = np.load('../data/'+self.dataset+self.att+'att_features_2/'+self.split+'_CS_2.csv.gz.npy')
+        self.dataset = dataset
+        self.data_seg4_t1 = np.load('../data/'+self.dataset+'/att_features_4/'+self.split+'_1.csv.gz.npy')
+        self.data_seg4_t2 = np.load('../data/'+self.dataset+'/att_features_4/'+self.split+'_2.csv.gz.npy')
+        self.data_seg4_t3 = np.load('../data/'+self.dataset+'/att_features_4/'+self.split+'_3.csv.gz.npy')
+        self.data_seg4_t4 = np.load('../data/'+self.dataset+'/att_features_4/'+self.split+'_4.csv.gz.npy')
+        self.data_seg3_t1 = np.load('../data/'+self.dataset+'/att_features_3/'+self.split+'_1.csv.gz.npy')
+        self.data_seg3_t2 = np.load('../data/'+self.dataset+'/att_features_3/'+self.split+'_2.csv.gz.npy')
+        self.data_seg3_t3 = np.load('../data/'+self.dataset+'/att_features_3/'+self.split+'_3.csv.gz.npy')
+        self.data_seg2_t1 = np.load('../data/'+self.dataset+'/att_features_2/'+self.split+'_1.csv.gz.npy')
+        self.data_seg2_t2 = np.load('../data/'+self.dataset+'/att_features_2/'+self.split+'_2.csv.gz.npy')
         self.list_IDs = self.list_IDs[0:len(self.data_seg4_t1)]
         self.on_epoch_end()
 
