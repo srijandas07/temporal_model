@@ -32,7 +32,9 @@ python main.py (optional arguments)
 
 ## PRE-TRAINED MODELS
 
-The pretrained 3DCNN model can be downloaded from https://drive.google.com/drive/folders/1WE5srEZjth_Or1--lLG3cwCuqjugsDh1?usp=sharing as well as the skeleton files. Extract to the data folder.
+The pretrained 3DCNN model can be downloaded from https://drive.google.com/drive/folders/1WE5srEZjth_Or1--lLG3cwCuqjugsDh1?usp=sharing. Extract to the data folder.
+
+To extract and use the skeleton information, use the link provided above to download and unzip the files into ```data/DATASET/ ```
 
 ## I3D segment wise Features
 
