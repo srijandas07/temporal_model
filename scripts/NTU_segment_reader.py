@@ -23,7 +23,7 @@ class DataGenerator(keras.utils.Sequence):
         self.step_seg3 = 4
         self.dim = 7168
         self.dim_skl = 150
-        self.path_skeleton = '../data/skeleton_npy/'
+        self.path_skeleton = '../data/'+dataset+'/skeleton_npy/'
         self.step = 5
         self.split = split
         self.att = att
