@@ -30,7 +30,6 @@ if __name__ == '__main__':
     args = parse()
     csvlogger = CSVLogger(args.name+'_temporal_model.csv')
     reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor = 0.1, patience = 10)
-    epochs = int(args.epochs)
     model = temporal_model(args.n_neuron, args.n_neuron_skl, args.n_dropout, args.batch_size, args.timesteps_seg1, args.timesteps_seg2, args.timesteps_seg3, args.timesteps_skl, args.data_dim, args.data_dim_skl, args.num_classes)
     parallel_model = multi_gpu_model(model, gpus=4)
     parallel_model.compile(loss = 'categorical_crossentropy', optimizer = keras.optimizers.Adam(lr=args.lr, clipnorm=1), metrics = ['accuracy'])
