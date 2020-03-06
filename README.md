@@ -21,12 +21,12 @@ Ensure Anaconda 4.7 or above is installed using `conda info`, else refer to the 
 The following commands can then be used to install the dependencies:
 
 ```bash
-conda create --name tensorflow-gpu1.13 tensorflow-gpu==1.13.1 keras scikit-image opencv
-conda create --name pytorchenv pytorch==1.0.1 torchvision==0.2 tensorflow-gpu==1.13.1 keras scikit-image opencv "pillow<7" tqdm
+conda create --name temporal_model_env tensorflow-gpu==1.13.1 keras scikit-image opencv
 ```
 ## EXECUTION
 
 ```bash
+conda activate temporal_model_env
 python main.py (optional arguments)
 ```
 
@@ -34,11 +34,11 @@ python main.py (optional arguments)
 
 The pretrained 3DCNN model can be downloaded from https://drive.google.com/drive/folders/1WE5srEZjth_Or1--lLG3cwCuqjugsDh1?usp=sharing. Extract to the data folder.
 
-To extract and use the skeleton information, use the link provided above to download and unzip the files into ```data/DATASET/ ```
+To extract and use the skeleton information, use the link provided above to download and unzip the files into the ```data/NTU_CS/``` folder. For any dataset, skeleton files should be kept in the corresponding ```data/DATASET``` folder.
 
 ## I3D segment wise Features
 
-Can be extracted using scripts in scripts/segment_extraction/ folder.
+Can be extracted using scripts in scripts/segment_extraction/ folder. Refer to the instructions [here](https://github.com/srijandas07/temporal_model/blob/master/scripts/segment_extraction/README.md).
 
 ## Reference
 <a id="1">[1]</a>
