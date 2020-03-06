@@ -16,18 +16,18 @@ class DataGenerator(keras.utils.Sequence):
         'Initialization'
         self.batch_size = batch_size
         self.path_video_files = path_video_files
-        self.list_IDs = [i.strip() for i in open(path_video_files).readlines()]       
+        self.list_IDs = [i.strip() for i in open(self.path_video_files).readlines()]       
         self.n_classes = 60
         self.step_seg1 = 2
         self.step_seg2 = 3
         self.step_seg3 = 4
         self.dim = 7168
         self.dim_skl = 150
-        self.path_skeleton = '../data/'+dataset+'/skeleton_npy/'
         self.step = 5
         self.split = split
         self.att = att
         self.dataset = dataset
+        self.path_skeleton = '../data/'+self.dataset+'/skeleton_npy/'
         self.data_seg4_t1 = np.load('../data/'+self.dataset+'/att_features_4/'+self.split+'_1.csv.gz.npy')
         self.data_seg4_t2 = np.load('../data/'+self.dataset+'/att_features_4/'+self.split+'_2.csv.gz.npy')
         self.data_seg4_t3 = np.load('../data/'+self.dataset+'/att_features_4/'+self.split+'_3.csv.gz.npy')
