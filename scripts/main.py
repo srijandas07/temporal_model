@@ -39,9 +39,9 @@ if __name__ == '__main__':
     model_checkpoint = CustomModelCheckpoint(model, './weights_'+args.name+'/epoch_')
     print('Model Compiled !!!')
 
-    train_generator = DataGenerator(args.train_file, 'train', args.dataset, batch_size = args.batch_size)
-    val_generator = DataGenerator(args.val_file, 'validation', args.dataset, batch_size = args.batch_size)
-    test_generator = DataGenerator(args.test_file, 'test', args.dataset, batch_size = args.batch_size)
+    train_generator = DataGenerator('../data/{}/train.txt', 'train', args.dataset, batch_size = args.batch_size)
+    val_generator = DataGenerator('../data/{}/validation.txt', 'validation', args.dataset, batch_size = args.batch_size)
+    test_generator = DataGenerator('../data/{}/test.txt', 'test', args.dataset, batch_size = args.batch_size)
 
 
     parallel_model.fit_generator(generator=train_generator,
