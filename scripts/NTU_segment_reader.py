@@ -25,7 +25,6 @@ class DataGenerator(keras.utils.Sequence):
         self.dim_skl = 150
         self.step = 5
         self.split = split
-        self.att = att
         self.dataset = dataset
         self.path_skeleton = '../data/'+self.dataset+'/skeleton_npy/'
         self.data_seg4_t1 = np.load('../data/'+self.dataset+'/att_features_4/'+self.split+'_1.csv.gz.npy')
