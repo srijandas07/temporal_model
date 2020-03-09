@@ -19,9 +19,6 @@ def parse():
     parser.add_argument('--n_neuron_skl', default=150, type=int)
     parser.add_argument('--name', default='test')
     parser.add_argument('--epochs', default=100, type=int) 
-    parser.add_argument('--train_file', default='../data/NTU_CS/train_CS.txt')
-    parser.add_argument('--val_file', default='../data/NTU_CS/validation_CS.txt')
-    parser.add_argument('--test_file', default='../data/NTU_CS/test_CS.txt')
 
     args = parser.parse_args()
     return args
